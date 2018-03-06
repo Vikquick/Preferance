@@ -43,7 +43,7 @@ public class DeckController {
 
 
     //Метод выдачи карт из колоды игроку
-    private void giveTwoCardToPlayer(List<Card> deck, Gamer gamer, int count){
+    private void giveCards(List<Card> deck, Gamer gamer, int count){
 
         for (int i = 0; i < count; i++) {
 
@@ -56,13 +56,15 @@ public class DeckController {
     // Раздаем начальные карты игрокам
     public void startingGivingCards(Gamer first, Gamer second, Gamer third, List<Card> deck){
         for (int i = 0; i < 5; i++) {
-            giveTwoCardToPlayer(deck, first, 2);
-            giveTwoCardToPlayer(deck, second, 2);
-            giveTwoCardToPlayer(deck, third, 2);
+            giveCards(deck, first, 2);
+            giveCards(deck, second, 2);
+            giveCards(deck, third, 2);
         }
     }
 
     //Выкладываем карты в прикуп
-    public void throwCartsToBuyIn(){}
+    public void throwCartsToBuyIn(List<Card> buyInDeck, Gamer fourth){
+        giveCards(buyInDeck, fourth, 2);
+    }
 
 }

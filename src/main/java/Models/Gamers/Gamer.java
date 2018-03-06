@@ -39,9 +39,14 @@ public class Gamer {
         this.deck = deck;
     }
 
-    public String getDecision(List<Card> deck){
-
-
+    public String getDecision(){
+        System.out.println("Игрок " + this.name + " принимает решение...");
         return null;
+    }
+
+    public void getRunkForHandDeck(List<Card> deck ){
+        for (Card card : deck) {
+            card.setRunk();
+        }
     }
 }
