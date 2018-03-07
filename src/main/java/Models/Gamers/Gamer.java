@@ -50,7 +50,7 @@ public class Gamer {
 
 
         System.out.println(countSuitsInHand + " - столько карт у него масти " + typeOfSuitsInHand);
-        System.out.println(suitsInHand.getCardList().size());
+
         int runk = 0;
         for (int i = 0; i < suitsInHand.getCardList().size(); i++) {
             runk += suitsInHand.getCardList().get(i).getRunk();
@@ -60,19 +60,19 @@ public class Gamer {
             return "PASS";
         } else switch (runk % 10) {
             case 0: {
-                System.out.println(runk);
+                System.out.println(runk%10 + "");
                 break;
             }
             case 1: {
-                System.out.println(runk);
+                System.out.println(runk%10);
                 break;
             }
             case 2: {
-                System.out.println(runk);
+                System.out.println(runk%10);
                 break;
             }
             case 3: {
-                System.out.println(runk);
+                System.out.println(runk%10);
                 break;
             }
         }
@@ -83,7 +83,7 @@ public class Gamer {
     public List<Card> countCards(List<Card> deck, Suit suit) {
         List<Card> maxSuitCountCards = new ArrayList<>();
         for (Card card : deck) {
-            if (card.getSuit().equals(suit.toString())) maxSuitCountCards.add(card);
+            if (Objects.equals(card.getSuit().toString(), suit.toString())) maxSuitCountCards.add(card);
         }
         return maxSuitCountCards;
     }
