@@ -1,6 +1,5 @@
 package OrderStrategies;
 
-import Main.Game;
 import Models.Cards.Card;
 import Models.Gamers.Gamer;
 import org.apache.log4j.Logger;
@@ -22,7 +21,7 @@ public class Maximal implements OrderStrategy {
         if (desk.size() != 0) {
             //Выбираем карту в масть
             for (Card gamersCard : gamer.deck) {
-               logger.info("Карта игрока " + gamersCard.cardWeight + " " + gamersCard.suit);
+                logger.info("Карта игрока " + gamersCard.cardWeight + " " + gamersCard.suit);
                 if (desk.get(0).suit.toString().equals(gamersCard.suit.toString())) {
                     variants.add(gamersCard);
                 }

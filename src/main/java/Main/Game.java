@@ -41,6 +41,5 @@ public class Game {
             round.startRound(first, second, third);
             rounds.add(round);
         }
-        System.out.println(first.deck.size());
     }
 }

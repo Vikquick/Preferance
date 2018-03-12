@@ -6,6 +6,7 @@ import Models.Games.Decision;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -97,6 +98,18 @@ public class Gamer {
         for (Card card : deck) {
             card.setRunk();
             logger.info("У игрока " + this.getName() + " ранг карты " + card.cardWeight + " " + card.suit + " равен - " + card.getRunk());
+        }
+    }
+
+    public void throwCardsAfterBuyIn(Decision decision) {
+        this.getRunkForHandDeck(this.getDeck());
+        Collections.sort(deck);
+        if (decision.equals(Decision.MIZER)) {
+            deck.remove(0);
+            deck.remove(0);
+        } else {
+            deck.remove(deck.size() - 1);
+            deck.remove(deck.size() - 1);
         }
     }
 

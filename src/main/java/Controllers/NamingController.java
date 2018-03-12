@@ -16,7 +16,7 @@ public class NamingController {
 
     public String nameGamer() {
 
-        logger.info("При иициализации контроллера наименований берем массив имен из ENUM Names");
+        logger.info("При инициализации контроллера наименований берем массив имен из ENUM Names");
         Collections.shuffle(namesList);
         logger.info("Расставляем имена в массиве в случайном порядке");
         String name = namesList.get(0).toString();

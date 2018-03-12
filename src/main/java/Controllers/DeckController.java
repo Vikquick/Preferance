@@ -48,12 +48,12 @@ public class DeckController {
 
 
     //Метод выдачи карт из колоды игроку
-    private void giveCards(List<Card> deck, Gamer gamer, int count) {
+    public void giveCards(List<Card> deck, Gamer gamer, int count) {
 
         for (int i = 0; i < count; i++) {
-            gamer.deck.add(deck.get(i));
-            logger.info("Игроку " + gamer.name + " выдана " + deck.get(i).cardWeight + " " + deck.get(i).suit);
-            deck.remove(i);
+            gamer.deck.add(deck.get(0));
+            logger.info("Игроку " + gamer.name + " выдана " + deck.get(0).cardWeight + " " + deck.get(0).suit);
+            deck.remove(0);
             logger.info("Карта удалена из колоды");
         }
     }
@@ -66,11 +66,6 @@ public class DeckController {
             giveCards(deck, second, 2);
             giveCards(deck, third, 2);
         }
-    }
-
-    //Выкладываем карты в прикуп
-    public void throwCartsToBuyIn(List<Card> buyInDeck, Gamer fourth) {
-        giveCards(buyInDeck, fourth, 2);
     }
 
 }

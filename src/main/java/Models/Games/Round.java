@@ -17,6 +17,12 @@ public class Round {
     List<Decision> decisions;
     List<Order> orders;
     Merchency merchency;
+    Decision decision;
+    Gamer winner;
+
+    public Round(int number) {
+        this.number = number;
+    }
 
     public List<Decision> getDecisions() {
         return decisions;
@@ -24,10 +30,6 @@ public class Round {
 
     public void setDecisions(List<Decision> decisions) {
         this.decisions = decisions;
-    }
-
-    public Round(int number) {
-        this.number = number;
     }
 
     public int getNumber() {
@@ -79,19 +81,27 @@ public class Round {
                 switch (i) {
                     case 0:
                         orderGamer = first;
+                        decision = decisions.get(i);
                         break;
                     case 1:
                         orderGamer = second;
+                        decision = decisions.get(i);
                         break;
                     case 2:
                         orderGamer = third;
+                        decision = decisions.get(i);
                         break;
                 }
             }
         }
-        if (orderGamer != null)
-        logger.info("Игрок, который принял решение сыграть - " + orderGamer.getName());
+        if (orderGamer != null) {
+            logger.info("Игрок, который принял решение сыграть - " + orderGamer.getName());
 
+            //Игрок победивший в торговле забирает прикуп
+            logger.info("Игрок " + orderGamer.getName() + " забирает прикуп");
+            deckController.giveCards(deck, orderGamer, 2);
+            orderGamer.throwCardsAfterBuyIn(decision);
+        }
         for (int i = 0; i < 10; i++) {
             logger.info("Раздача №" + (i + 1));
             Order order = new Order(i);
@@ -128,42 +138,42 @@ public class Round {
             if (orderGamer.getName().equals(first.getName())) {
                 if (max == firstWins && firstWins > 5) {
                     logger.info("Игрок " + first.getName() + " выиграл своё заявление");
-                    first.bullet.bullet += 6 * 20;
-                    second.bullet.mountain += secondWins * 10;
-                    third.bullet.mountain += thirdWins * 10;
+                    first.bullet.bullet += firstWins * 2;
+                    second.bullet.mountain += (5-secondWins);
+                    third.bullet.mountain += (5 - thirdWins);
                 } else {
                     logger.info("Игрок " + first.getName() + " проиграл своё заявление");
-                    first.bullet.mountain += (6 - firstWins) * 10;
-                    second.bullet.whists += secondWins;
-                    third.bullet.whists += thirdWins;
+                    first.bullet.mountain += (6 - firstWins) * 2;
+                    second.bullet.whists += secondWins*2;
+                    third.bullet.whists += thirdWins*2;
                 }
             }
             //Если заявку подал второй игрок
             if (orderGamer.getName().equals(second.getName())) {
                 if (max == secondWins && secondWins > 5) {
                     logger.info("Игрок " + first.getName() + " выиграл своё заявление");
-                    second.bullet.bullet += 6 * 20;
-                    first.bullet.mountain += firstWins * 10;
-                    third.bullet.mountain += thirdWins * 10;
+                    second.bullet.bullet += secondWins * 2;
+                    first.bullet.mountain += (5 - firstWins);
+                    third.bullet.mountain += (5 - thirdWins);
                 } else {
                     logger.info("Игрок " + first.getName() + " проиграл своё заявление");
-                    second.bullet.mountain += (6 - secondWins) * 10;
-                    first.bullet.whists += firstWins;
-                    third.bullet.whists += thirdWins;
+                    second.bullet.mountain += (6 - secondWins) * 2;
+                    first.bullet.whists += firstWins*2;
+                    third.bullet.whists += thirdWins*2;
                 }
             }
             //Если заявку подал третий игрок
             if (orderGamer.getName().equals(third.getName())) {
                 if (max == thirdWins && thirdWins > 5) {
                     logger.info("Игрок " + first.getName() + " выиграл своё заявление");
-                    third.bullet.bullet += 6 * 20;
-                    second.bullet.mountain += secondWins * 10;
-                    first.bullet.mountain += firstWins * 10;
+                    third.bullet.bullet += thirdWins * 2;
+                    second.bullet.mountain += (5-secondWins);
+                    first.bullet.mountain += (5 - firstWins);
                 } else {
                     logger.info("Игрок " + first.getName() + " проиграл своё заявление");
-                    third.bullet.mountain += (6 - thirdWins) * 10;
-                    second.bullet.whists += secondWins;
-                    first.bullet.whists += firstWins;
+                    third.bullet.mountain += (6 - thirdWins) * 2;
+                    second.bullet.whists += secondWins*2;
+                    first.bullet.whists += firstWins*2;
                 }
             }
         }
@@ -175,36 +185,36 @@ public class Round {
             if (orderGamer.getName().equals(first.getName())) {
                 if (min == firstWins) {
                     logger.info("Игрок " + first.getName() + " выиграл своё заявление");
-                    first.bullet.bullet += 6 * 20;
+                    first.bullet.bullet += 10;
                 } else {
                     logger.info("Игрок " + first.getName() + " проиграл своё заявление");
-                    first.bullet.mountain += (firstWins - min) * 10;
-                    second.bullet.bullet += (secondWins - min) * 10;
-                    third.bullet.bullet += (thirdWins - min) * 10;
+                    first.bullet.mountain += firstWins * 10;
+                    second.bullet.bullet += 10;
+                    third.bullet.bullet += 10;
                 }
             }
 
             if (orderGamer.getName().equals(second.getName())) {
                 if (min == secondWins) {
                     logger.info("Игрок " + first.getName() + " выиграл своё заявление");
-                    second.bullet.bullet += 6 * 20;
+                    second.bullet.bullet += 10;
                 } else {
                     logger.info("Игрок " + first.getName() + " проиграл своё заявление");
-                    second.bullet.mountain += (secondWins - min) * 10;
-                    first.bullet.bullet += (firstWins - min) * 10;
-                    third.bullet.bullet += (thirdWins - min) * 10;
+                    second.bullet.mountain += secondWins * 10;
+                    first.bullet.bullet += 10;
+                    third.bullet.bullet += 10;
                 }
             }
 
             if (orderGamer.getName().equals(third.getName())) {
                 if (min == thirdWins) {
                     logger.info("Игрок " + first.getName() + " выиграл своё заявление");
-                    third.bullet.bullet += 6 * 20;
+                    third.bullet.bullet += 10;
                 } else {
                     logger.info("Игрок " + first.getName() + " проиграл своё заявление");
-                    third.bullet.mountain += (thirdWins - min) * 10;
-                    second.bullet.bullet += (secondWins - min) * 10;
-                    first.bullet.bullet += (firstWins - min) * 10;
+                    third.bullet.mountain += thirdWins * 10;
+                    second.bullet.bullet += 10;
+                    first.bullet.bullet += 10;
                 }
             }
         }
