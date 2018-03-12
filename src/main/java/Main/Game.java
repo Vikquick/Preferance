@@ -1,77 +1,46 @@
 package Main;
 
-import Controllers.DeckController;
 import Controllers.NamingController;
-import Models.Cards.Card;
 import Models.Gamers.Bullet;
 import Models.Gamers.Gamer;
 import Models.Games.Round;
+import org.apache.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
+    private static Logger logger = Logger.getLogger(Game.class);
+    public Gamer first;
+    public Gamer second;
+    public Gamer third;
+    public Gamer fourth;
 
-    public static Gamer first;
-    public static Gamer second;
-    public static Gamer third;
-    public static  Gamer fourth;
-    static int co;
+    List<Round> rounds;
+    Round round;
+
+    public Game() {
+    }
 
     public void start() {
-        DeckController deckController = new DeckController();
         NamingController namingController = new NamingController();
-        List<Card> deck = deckController.fillDeck();
-        System.out.println(deck.size());
-        deckController.reshuffleDeck(deck);
 
-        first = new Gamer(namingController.nameGamer(), new Bullet(0,0,0));
-        second = new Gamer(namingController.nameGamer(), new Bullet(0,0,0));
-        third = new Gamer(namingController.nameGamer(), new Bullet(0,0,0));
+        first = new Gamer(namingController.nameGamer(), new Bullet(0, 0, 0));
+        logger.info("Первого игрока зовут " + first.getName());
+        second = new Gamer(namingController.nameGamer(), new Bullet(0, 0, 0));
+        logger.info("Второго игрока зовут " + second.getName());
+        third = new Gamer(namingController.nameGamer(), new Bullet(0, 0, 0));
+        logger.info("Третьего игрока зовут " + third.getName());
         fourth = new Gamer(namingController.nameGamer(), null); //Раздающий
+        logger.info("Раздающего зовут " + fourth.getName()+"\n");
 
-        deckController.startingGivingCards(first, second, third, deck);
-        System.out.println(first.getName());
-        System.out.println(second.getName());
-        System.out.println(third.getName());
-
-        //Отладка, вывод карт в руке игрока №1
-        System.out.println("Колода игрока " + first.getName() + " - ");
-        for (int i = 0; i < first.deck.size(); i++) {
-            System.out.println(first.deck.get(i).cardWeight + " " + first.deck.get(i).suit);
+        rounds = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            logger.info("Раунд №" + (i + 1) + " начался");
+            round = new Round(i + 1);
+            round.startRound(first, second, third);
+            rounds.add(round);
         }
-
-        //Отладка, вывод рангов карт в руке игрока №1
-        first.getRunkForHandDeck(first.deck);
-        for (int i = 0; i < first.deck.size(); i++) {
-            System.out.println("Ранг " + i + " карты игрока " + first.name + " - " + first.deck.get(i).getRunk());
-        }
-
-        //Отладка, вывод карт в руке игрока №2
-        System.out.println("Колода игрока " + second.getName() + " - ");
-        for (int i = 0; i < second.deck.size(); i++) {
-            System.out.println(second.deck.get(i).cardWeight + " " + second.deck.get(i).suit);
-        }
-
-        //Отладка, вывод рангов карт в руке игрока №2
-        second.getRunkForHandDeck(second.deck);
-        for (int i = 0; i < second.deck.size(); i++) {
-            System.out.println("Ранг " + i + " карты игрока " + second.name + " - " + second.deck.get(i).getRunk());
-        }
-
-        //Отладка, вывод карт в руке игрока №3
-        System.out.println("Колода игрока " + third.getName() + " - ");
-        for (int i = 0; i < third.deck.size(); i++) {
-            System.out.println(third.deck.get(i).cardWeight + " " + third.deck.get(i).suit);
-        }
-
-        //Отладка, вывод рангов карт в руке игрока №3
-        third.getRunkForHandDeck(third.deck);
-        for (int i = 0; i < third.deck.size(); i++) {
-            System.out.println("Ранг " + i + " карты игрока " + third.name + " - " + third.deck.get(i).getRunk());
-        }
-
-        Round firstRound = new Round(1);
-        firstRound.startRound(first, second, third, deck);
         System.out.println(first.deck.size());
     }
 }

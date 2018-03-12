@@ -3,12 +3,15 @@ package Models.Gamers;
 import Models.Cards.Card;
 import Models.Cards.Suit;
 import Models.Games.Decision;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Gamer {
+    public static final Logger logger = Logger.getLogger(Gamer.class);
+
     public String name;
     public Bullet bullet = null;
     public List<Card> deck = new ArrayList<>();
@@ -43,17 +46,15 @@ public class Gamer {
     }
 
     public Decision getDecision(List<Decision> decisions) {
-        System.out.println("Игрок " + this.name + " принимает решение...");
+
+        logger.info("Игрок " + this.name + " принимает решение...");
         CountOfSuits suitsInHand = new CountOfSuits(calculateSuitsInHand());
 
         int countSuitsInHand = suitsInHand.getCount();
         String typeOfSuitsInHand = suitsInHand.getSuit();
 
-
-        System.out.println(countSuitsInHand + " - столько карт у него масти " + typeOfSuitsInHand);
-        System.out.println(suitsInHand.getCardList().size());
+        logger.info(countSuitsInHand + " - столько карт у него масти " + typeOfSuitsInHand);
         int runk = 0;
-
         for (int i = 0; i < suitsInHand.getCardList().size(); i++) {
             runk += suitsInHand.getCardList().get(i).getRunk();
         }
@@ -62,23 +63,22 @@ public class Gamer {
         if (!decisions.contains(Decision.BRIBES) && !decisions.contains(Decision.MIZER)) {
 
             if (countSuitsInHand < 4) {
-                System.out.println("Игрок " + this.name + " принимает решение...не рисковать и пассует");
+                logger.info("Игрок " + this.name + " принимает решение...не рисковать и пассует");
                 return Decision.PASS;
             } else {
-                System.out.println("Игрок " + this.name + " принимает решение...сыграть");
+                logger.info("Игрок " + this.name + " принимает решение...сыграть");
                 if (runk < 50) {
                     {
-                        System.out.println("Игрок " + this.name + " принимает решение...играть на мизер" +
-                                "");
+                        logger.info("Игрок " + this.name + " принимает решение...играть на мизер");
                         return Decision.MIZER;
                     }
                 } else {
-                    System.out.println("Игрок " + this.name + " принимает решение...играть на взятки");
+                    logger.info("Игрок " + this.name + " принимает решение...играть на взятки");
                     return Decision.BRIBES;
                 }
             } //А если заявка подана
         } else {
-            System.out.println("Игрок " + this.name + " принимает решение...пассовать");
+            logger.info("Игрок " + this.name + " принимает решение...пассовать");
             return Decision.PASS;
         }
     }
@@ -93,12 +93,16 @@ public class Gamer {
     }
 
     public void getRunkForHandDeck(List<Card> deck) {
+        logger.info("Рассчитываем ранги тех карт, что в руке игрока");
         for (Card card : deck) {
             card.setRunk();
+            logger.info("У игрока " + this.getName() + " ранг карты " + card.cardWeight + " " + card.suit + " равен - " + card.getRunk());
         }
     }
 
     private CountOfSuits calculateSuitsInHand() {
+
+        logger.info("Идет подсчет карт в руке по мастям");
         CountOfSuits countOfSuits = new CountOfSuits();
         List<Card> maxSuitCountCards = new ArrayList<>();
         int pik = 0;
@@ -107,6 +111,8 @@ public class Gamer {
         int cherv = 0;
         int max1 = 0;
         int max2 = 0;
+
+
         for (Card aDeck : this.deck) {
             if (Objects.equals(aDeck.getSuit().toString(), "Пики")) {
                 pik++;
@@ -121,9 +127,12 @@ public class Gamer {
                 cherv++;
             }
         }
+        logger.info("Количество карт в руке игрока " + this.getName() + " по мастям: пики - " + pik + ", трефы - " + tref + ", буби - " + bub + ", черви - " + cherv);
+
         max1 = Math.max(pik, tref);
         max2 = Math.max(bub, cherv);
         max1 = Math.max(max1, max2);
+
         if (max1 == pik) {
             maxSuitCountCards.addAll(countCards(this.deck, Suit.PICK));
             countOfSuits.setCount(pik);
