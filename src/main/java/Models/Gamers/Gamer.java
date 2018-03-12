@@ -2,6 +2,7 @@ package Models.Gamers;
 
 import Models.Cards.Card;
 import Models.Cards.Suit;
+import Models.Games.Decision;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,7 @@ public class Gamer {
         this.deck = deck;
     }
 
-    public String getDecision(List<String> decisions) {
+    public Decision getDecision(List<Decision> decisions) {
         System.out.println("Игрок " + this.name + " принимает решение...");
         CountOfSuits suitsInHand = new CountOfSuits(calculateSuitsInHand());
 
@@ -50,40 +51,43 @@ public class Gamer {
 
 
         System.out.println(countSuitsInHand + " - столько карт у него масти " + typeOfSuitsInHand);
-
+        System.out.println(suitsInHand.getCardList().size());
         int runk = 0;
+
         for (int i = 0; i < suitsInHand.getCardList().size(); i++) {
             runk += suitsInHand.getCardList().get(i).getRunk();
         }
-        if (countSuitsInHand < 4) {
-            System.out.println("Игрок " + this.name + " принимает решение...не рисковать и пассует");
-            return "PASS";
-        } else switch (runk % 10) {
-            case 0: {
-                System.out.println(runk%10 + "");
-                break;
-            }
-            case 1: {
-                System.out.println(runk%10);
-                break;
-            }
-            case 2: {
-                System.out.println(runk%10);
-                break;
-            }
-            case 3: {
-                System.out.println(runk%10);
-                break;
-            }
+
+        //Если заявка еще не подана, то...
+        if (!decisions.contains(Decision.BRIBES) && !decisions.contains(Decision.MIZER)) {
+
+            if (countSuitsInHand < 4) {
+                System.out.println("Игрок " + this.name + " принимает решение...не рисковать и пассует");
+                return Decision.PASS;
+            } else {
+                System.out.println("Игрок " + this.name + " принимает решение...сыграть");
+                if (runk < 50) {
+                    {
+                        System.out.println("Игрок " + this.name + " принимает решение...играть на мизер" +
+                                "");
+                        return Decision.MIZER;
+                    }
+                } else {
+                    System.out.println("Игрок " + this.name + " принимает решение...играть на взятки");
+                    return Decision.BRIBES;
+                }
+            } //А если заявка подана
+        } else {
+            System.out.println("Игрок " + this.name + " принимает решение...пассовать");
+            return Decision.PASS;
         }
-        System.out.println("Игрок " + this.name + " принимает решение...сыграть");
-        return "";
     }
 
     public List<Card> countCards(List<Card> deck, Suit suit) {
         List<Card> maxSuitCountCards = new ArrayList<>();
         for (Card card : deck) {
-            if (Objects.equals(card.getSuit().toString(), suit.toString())) maxSuitCountCards.add(card);
+            if (card.getSuit().toString().equals(suit.toString()))
+                maxSuitCountCards.add(card);
         }
         return maxSuitCountCards;
     }
@@ -121,28 +125,28 @@ public class Gamer {
         max2 = Math.max(bub, cherv);
         max1 = Math.max(max1, max2);
         if (max1 == pik) {
-            maxSuitCountCards = countCards(this.deck, Suit.PICK);
+            maxSuitCountCards.addAll(countCards(this.deck, Suit.PICK));
             countOfSuits.setCount(pik);
             countOfSuits.setSuit("Пики");
             countOfSuits.setCardList(maxSuitCountCards);
             return countOfSuits;
         }
         if (max1 == tref) {
-            maxSuitCountCards = countCards(this.deck, Suit.PICK);
+            maxSuitCountCards.addAll(countCards(this.deck, Suit.TREF));
             countOfSuits.setCount(tref);
             countOfSuits.setSuit("Трефы");
             countOfSuits.setCardList(maxSuitCountCards);
             return countOfSuits;
         }
         if (max1 == bub) {
-            maxSuitCountCards = countCards(this.deck, Suit.PICK);
+            maxSuitCountCards.addAll(countCards(this.deck, Suit.BUBI));
             countOfSuits.setCount(bub);
             countOfSuits.setSuit("Буби");
             countOfSuits.setCardList(maxSuitCountCards);
             return countOfSuits;
         }
         if (max1 == cherv) {
-            maxSuitCountCards = countCards(this.deck, Suit.PICK);
+            maxSuitCountCards.addAll(countCards(this.deck, Suit.CHERVI));
             countOfSuits.setCount(cherv);
             countOfSuits.setSuit("Черви");
             countOfSuits.setCardList(maxSuitCountCards);

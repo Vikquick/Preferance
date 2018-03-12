@@ -7,22 +7,25 @@ import java.util.List;
 import java.util.Objects;
 
 public class Merchency {
-    static String firstDecision;
-    static String secondDecision;
-    static String thirdDecision;
-    List<String> decisions;
-    public void startMerchency(Gamer first, Gamer second, Gamer third) {
+    static Decision firstDecision;
+    static Decision secondDecision;
+    static Decision thirdDecision;
+    List<Decision> decisions;
+
+    public List<Decision> startMerchency(Gamer first, Gamer second, Gamer third) {
         decisions = new ArrayList<>();
-        while ((!Objects.equals(firstDecision, "PASS") && !Objects.equals(secondDecision, "PASS"))
-                || (!Objects.equals(firstDecision, "PASS") && !Objects.equals(thirdDecision, "PASS"))
-                || (!Objects.equals(thirdDecision, "PASS") && !Objects.equals(secondDecision, "PASS"))) {
-            firstDecision =  first.getDecision(decisions);
-            secondDecision = second.getDecision(decisions);
-            thirdDecision = third.getDecision(decisions);
+
+        while ((!Objects.equals(firstDecision, Decision.PASS) && !Objects.equals(secondDecision, Decision.PASS))
+                || (!Objects.equals(firstDecision, Decision.PASS) && !Objects.equals(thirdDecision, Decision.PASS))
+                || (!Objects.equals(thirdDecision, Decision.PASS) && !Objects.equals(secondDecision, Decision.PASS)))
+        {
+            firstDecision = first.getDecision(decisions);
             decisions.add(firstDecision);
+            secondDecision = second.getDecision(decisions);
             decisions.add(secondDecision);
+            thirdDecision = third.getDecision(decisions);
             decisions.add(thirdDecision);
-            break;
         }
+        return decisions;
     }
 }

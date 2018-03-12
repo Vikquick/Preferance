@@ -1,11 +1,11 @@
 package Models.Cards;
 
-public class Card {
+public class Card implements Comparable<Card>{
 
     public CardWeight cardWeight;
     public Suit suit;
     public boolean trump = false;
-    public int runk;
+    public Integer runk;
 
     public Card() {
     }
@@ -100,5 +100,10 @@ public class Card {
             this.runk = cardWeightRunk * suitRunk;
         else
             this.runk = cardWeightRunk * suitRunk * trumpRunk;
+    }
+
+    @Override
+    public int compareTo(Card o) {
+        return runk.compareTo(o.getRunk());
     }
 }
