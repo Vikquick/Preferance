@@ -47,9 +47,9 @@ public class Game {
         }
 
         //Отладка, вывод карт в руке игрока №2
-        System.out.println("Колода игрока " + first.getName() + " - ");
-        for (int i = 0; i < first.deck.size(); i++) {
-            System.out.println(first.deck.get(i).cardWeight + " " + first.deck.get(i).suit);
+        System.out.println("Колода игрока " + second.getName() + " - ");
+        for (int i = 0; i < second.deck.size(); i++) {
+            System.out.println(second.deck.get(i).cardWeight + " " + second.deck.get(i).suit);
         }
 
         //Отладка, вывод рангов карт в руке игрока №2
@@ -59,9 +59,9 @@ public class Game {
         }
 
         //Отладка, вывод карт в руке игрока №3
-        System.out.println("Колода игрока " + first.getName() + " - ");
-        for (int i = 0; i < first.deck.size(); i++) {
-            System.out.println(first.deck.get(i).cardWeight + " " + first.deck.get(i).suit);
+        System.out.println("Колода игрока " + third.getName() + " - ");
+        for (int i = 0; i < third.deck.size(); i++) {
+            System.out.println(third.deck.get(i).cardWeight + " " + third.deck.get(i).suit);
         }
 
         //Отладка, вывод рангов карт в руке игрока №3
@@ -70,7 +70,8 @@ public class Game {
             System.out.println("Ранг " + i + " карты игрока " + third.name + " - " + third.deck.get(i).getRunk());
         }
 
-        Round firstRound = new Round();
-        firstRound.startRound(first, second, third);
+        Round firstRound = new Round(1);
+        firstRound.startRound(first, second, third, deck);
+        System.out.println(first.deck.size());
     }
 }
