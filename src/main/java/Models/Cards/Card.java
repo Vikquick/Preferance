@@ -3,6 +3,7 @@ package Models.Cards;
 public class Card implements Comparable<Card>{
 
     public CardWeight cardWeight;
+    public int cardWeightRunk;
     public Suit suit;
     public boolean trump = false;
     public Integer runk;
@@ -44,42 +45,52 @@ public class Card implements Comparable<Card>{
         return runk;
     }
 
-    public void setRunk() {
-        int cardWeightRunk = 0;
-        int suitRunk = 0;
-        int trumpRunk = 10;
+    public int getCardWeightRunk() {
+        return cardWeightRunk;
+    }
 
+    public void setCardWeightRunk() {
         switch (this.cardWeight.toString()) {
             case "6":
-                cardWeightRunk = 1;
+                this.cardWeightRunk = 1;
                 break;
             case "7":
-                cardWeightRunk = 2;
+                this.cardWeightRunk = 2;
                 break;
             case "8":
-                cardWeightRunk = 3;
+                this.cardWeightRunk = 3;
                 break;
             case "9":
-                cardWeightRunk = 4;
+                this.cardWeightRunk = 4;
                 break;
             case "10":
-                cardWeightRunk = 5;
+                this.cardWeightRunk = 5;
                 break;
             case "Валет":
-                cardWeightRunk = 6;
+                this.cardWeightRunk = 6;
                 break;
             case "Дама":
-                cardWeightRunk = 7;
+                this.cardWeightRunk = 7;
                 break;
             case "Король":
-                cardWeightRunk = 8;
+                this.cardWeightRunk = 8;
                 break;
             case "Туз":
-                cardWeightRunk = 9;
+                this.cardWeightRunk = 9;
                 break;
             default:
                 //TODO add log warning
         }
+    }
+
+    public void setRunk(Integer runk) {
+        this.runk = runk;
+    }
+
+    public void setRunk() {
+        int suitRunk = 0;
+        int trumpRunk = 10;
+        setCardWeightRunk();
 
         switch (this.suit.toString()) {
             case "Пики":
@@ -97,9 +108,9 @@ public class Card implements Comparable<Card>{
             default: //TODO add log warning
         }
         if (!trump)
-            this.runk = cardWeightRunk * suitRunk;
+            this.runk = this.cardWeightRunk * suitRunk;
         else
-            this.runk = cardWeightRunk * suitRunk * trumpRunk;
+            this.runk = this.cardWeightRunk * suitRunk * trumpRunk;
     }
 
     @Override

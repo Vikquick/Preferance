@@ -34,11 +34,12 @@ public class Minimal implements OrderStrategy {
         Collections.sort(variants); //Сортируем варианты по возрастанию
 
         for (Card variant : variants) {
-            System.out.println("Варианты на выкладку " + variant.cardWeight + " " + variant.suit);
+            System.out.println("Варианты на выкладку - " + variant.cardWeight + " " + variant.suit);
         }
 
         //Выкидываем наименьшую карту
         desk.add(variants.get(0));
+        System.out.println(gamer.name+ " выкладывает карту " + variants.get(0).getCardWeight() + " " + variants.get(0).suit);
         gamer.deck.remove(variants.get(0));
         return desk;
     }

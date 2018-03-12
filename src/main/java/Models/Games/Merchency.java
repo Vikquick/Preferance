@@ -13,6 +13,8 @@ public class Merchency {
     List<Decision> decisions;
 
     public List<Decision> startMerchency(Gamer first, Gamer second, Gamer third) {
+        System.out.println("");
+        System.out.println("Начинается торговля!");
         decisions = new ArrayList<>();
 
         while ((!Objects.equals(firstDecision, Decision.PASS) && !Objects.equals(secondDecision, Decision.PASS))

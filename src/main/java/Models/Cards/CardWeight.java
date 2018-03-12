@@ -1,6 +1,7 @@
 package Models.Cards;
 
 public enum CardWeight {
+
     SIX {
         @Override
         public String toString() {
