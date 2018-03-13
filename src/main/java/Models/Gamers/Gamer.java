@@ -176,7 +176,12 @@ public class Gamer {
         }
         return null;
     }
+    public void addToBullet(Bullet bullet) {
 
+        this.bullet.bullet += bullet.bullet;
+        this.bullet.mountain += bullet.mountain;
+        this.bullet.whists += bullet.whists;
+    }
     public class CountOfSuits {
         int count;
         String suit;

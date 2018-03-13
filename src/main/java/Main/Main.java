@@ -15,5 +15,6 @@ public class Main {
         game.getResults();
         game.getResultsOfGivingCardsInRound(3);
         game.getResultOfMerchencyInRound(5);
+        game.getProcessOfOrderingInRound(7);
     }
 }

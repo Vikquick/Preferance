@@ -3,6 +3,8 @@ package Main;
 import Controllers.NamingController;
 import Models.Gamers.Bullet;
 import Models.Gamers.Gamer;
+import Models.Games.Order;
+import Models.Games.OrderStep;
 import Models.Games.Round;
 import org.apache.log4j.Logger;
 
@@ -71,26 +73,26 @@ public class Game {
     public void startRounds() {
         NamingController namingController = new NamingController();
 
-        this.first = new Gamer(namingController.nameGamer(), new Bullet(0, 0, 0));
+        first = new Gamer(namingController.nameGamer(), new Bullet(0, 0, 0));
         logger.info("Первого игрока зовут " + first.getName());
-        this.second = new Gamer(namingController.nameGamer(), new Bullet(0, 0, 0));
+        second = new Gamer(namingController.nameGamer(), new Bullet(0, 0, 0));
         logger.info("Второго игрока зовут " + second.getName());
-        this.third = new Gamer(namingController.nameGamer(), new Bullet(0, 0, 0));
+        third = new Gamer(namingController.nameGamer(), new Bullet(0, 0, 0));
         logger.info("Третьего игрока зовут " + third.getName());
-        this.fourth = new Gamer(namingController.nameGamer(), null); //Раздающий
+        fourth = new Gamer(namingController.nameGamer(), null); //Раздающий
         logger.info("Раздающего зовут " + fourth.getName() + "\n");
 
-        this.rounds = new ArrayList<>();
+        rounds = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             logger.info("Раунд №" + (i + 1) + " начался");
-            this.round = new Round(i + 1);
-            this.round.startRound(first, second, third);
-            this.rounds.add(round);
+            round = new Round(i + 1);
+            round.startRound(first, second, third);
+            rounds.add(round);
         }
     }
 
     public Round getRound(int i) {
-        this.round = this.rounds.get(i);
+        round = rounds.get(i);
         return round;
     }
 
@@ -108,7 +110,7 @@ public class Game {
     //Получение результатов выдачи карт в нужном раунде
     public void getResultsOfGivingCardsInRound(int roundNumber) {
 
-        Round round = getRound(roundNumber);
+        Round round = getRound(roundNumber - 1);
         logger.info("Результаты раздачи №" + roundNumber + ":");
 
         for (int i = 0; i < round.getFirstDeck().size(); i++) {
@@ -122,11 +124,39 @@ public class Game {
         }
     }
 
+    //Результат торговли в нужном раунде
     public void getResultOfMerchencyInRound(int roundNumber) {
+
+        Round round = getRound(roundNumber - 1);
         logger.info("Игрок " + first.getName() + " принимает решение - " + round.getMerchency().getFirstDecision().toString());
         logger.info("Игрок " + second.getName() + " - " + round.getMerchency().getSecondDecision().toString());
         logger.info("Игрок " + third.getName() + " - " + round.getMerchency().getThirdDecision().toString());
     }
+
+    //Процесс розыгрыша нужного раунда
+    public void getProcessOfOrderingInRound(int roundNumber) {
+        Round round = getRound(roundNumber - 1);
+        List<Order> orders = round.getOrders();
+        Order order;
+        OrderStep step;
+        logger.info("Процесс " + roundNumber + "го розыгрыша:");
+        for (int i = 0; i < orders.size(); i++) {
+            order = orders.get(i);
+            int orderStepsCount = order.getOrderSteps().size();
+            for (int j = 0; j < orderStepsCount; j++) {
+                step = order.getOrderSteps().get(j);
+                logger.info("Игрок " + step.getGamer().getName() + " кладет карту " + step.getCard().getCardWeight() + " " + step.getCard().getSuit());
+            }
+            logger.info("Игрок " + order.getWinner().getName() + " забирает взятку");
+        }
+        logger.info("Игроку " + first.getName() + " начислено в пульку:  " + round.getFirstResult().bullet + " пуль, "
+                + round.getFirstResult().mountain + " в гору, и " + round.getFirstResult().whists + " вистов");
+        logger.info("Игроку " + second.getName() + " начислено в пульку:  " + round.getSecondResult().bullet + " пуль, "
+                + round.getSecondResult().mountain + " в гору, и " + round.getSecondResult().whists + " вистов");
+        logger.info("Игроку " + third.getName() + " начислено в пульку:  " + round.getThirdResult().bullet + " пуль, "
+                + round.getThirdResult().mountain + " в гору, и " + round.getThirdResult().whists + " вистов");
+    }
+
 }
 
 

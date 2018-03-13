@@ -83,10 +83,6 @@ public class Card implements Comparable<Card>{
         }
     }
 
-    public void setRunk(Integer runk) {
-        this.runk = runk;
-    }
-
     public void setRunk() {
         int suitRunk = 0;
         int trumpRunk = 10;

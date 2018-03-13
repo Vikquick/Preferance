@@ -14,6 +14,8 @@ public class Order {
 
     int number;
     Gamer winner;
+    OrderStep orderStep;
+    List<OrderStep> orderSteps;
 
     public Order(int number) {
         this.number = number;
@@ -35,27 +37,43 @@ public class Order {
         this.winner = winner;
     }
 
+    public OrderStep getOrderStep() {
+        return orderStep;
+    }
+
+    public void setOrderStep(OrderStep orderStep) {
+        this.orderStep = orderStep;
+    }
+
+    public List<OrderStep> getOrderSteps() {
+        return orderSteps;
+    }
+
+    public void setOrderSteps(List<OrderStep> orderSteps) {
+        this.orderSteps = orderSteps;
+    }
+
     @SuppressWarnings("Duplicates")
     public Gamer startOrdering(Gamer first, Gamer second, Gamer third, List<Decision> decisions, List<Gamer> winners, Gamer orderGamer) {
 
         List<Card> deck = new ArrayList<>();
-
+        orderSteps = new ArrayList<>();
 
         if (decisions.contains(Decision.MIZER)) {
             logger.info("Результатом торговли был мизер, применяем стратегию Minimal");
             Minimal minimal = new Minimal();
             if (winners.size() == 0 || winners.get(winners.size() - 1) == first) {
-                minimal.makeDecision(deck, first);
-                minimal.makeDecision(deck, second);
-                minimal.makeDecision(deck, third);
+                orderSteps.add(minimal.makeDecision(deck, first));
+                orderSteps.add(minimal.makeDecision(deck, second));
+                orderSteps.add(minimal.makeDecision(deck, third));
             } else if (winners.get(winners.size() - 1) == second) {
-                minimal.makeDecision(deck, second);
-                minimal.makeDecision(deck, third);
-                minimal.makeDecision(deck, first);
+                orderSteps.add(minimal.makeDecision(deck, second));
+                orderSteps.add(minimal.makeDecision(deck, third));
+                orderSteps.add(minimal.makeDecision(deck, first));
             } else {
-                minimal.makeDecision(deck, third);
-                minimal.makeDecision(deck, first);
-                minimal.makeDecision(deck, second);
+                orderSteps.add(minimal.makeDecision(deck, third));
+                orderSteps.add(minimal.makeDecision(deck, first));
+                orderSteps.add(minimal.makeDecision(deck, second));
             }
 
             logger.info("Во взятке следующие три карты:");
@@ -67,17 +85,17 @@ public class Order {
             logger.info("Результатом торговли была игра на взятки, применяем стратегию Maximal");
             Maximal maximal = new Maximal();
             if (winners.size() == 0 || winners.get(winners.size() - 1) == first) {
-                deck = maximal.makeDecision(deck, first);
-                deck = maximal.makeDecision(deck, second);
-                deck = maximal.makeDecision(deck, third);
+                orderSteps.add(maximal.makeDecision(deck, first));
+                orderSteps.add(maximal.makeDecision(deck, second));
+                orderSteps.add(maximal.makeDecision(deck, third));
             } else if (winners.get(winners.size() - 1) == second) {
-                deck = maximal.makeDecision(deck, second);
-                deck = maximal.makeDecision(deck, third);
-                deck = maximal.makeDecision(deck, first);
+                orderSteps.add(maximal.makeDecision(deck, second));
+                orderSteps.add(maximal.makeDecision(deck, third));
+                orderSteps.add(maximal.makeDecision(deck, first));
             } else {
-                deck = maximal.makeDecision(deck, third);
-                deck = maximal.makeDecision(deck, first);
-                deck = maximal.makeDecision(deck, second);
+                orderSteps.add(maximal.makeDecision(deck, third));
+                orderSteps.add(maximal.makeDecision(deck, first));
+                orderSteps.add(maximal.makeDecision(deck, second));
             }
 
             logger.info("Во взятке следующие три карты:");
@@ -91,17 +109,17 @@ public class Order {
 
             Minimal minimal = new Minimal();
             if (winners.size() == 0 || winners.get(winners.size() - 1) == first) {
-                minimal.makeDecision(deck, first);
-                minimal.makeDecision(deck, second);
-                minimal.makeDecision(deck, third);
+                orderSteps.add(minimal.makeDecision(deck, first));
+                orderSteps.add(minimal.makeDecision(deck, second));
+                orderSteps.add(minimal.makeDecision(deck, third));
             } else if (winners.get(winners.size() - 1) == second) {
-                minimal.makeDecision(deck, second);
-                minimal.makeDecision(deck, third);
-                minimal.makeDecision(deck, first);
+                orderSteps.add(minimal.makeDecision(deck, second));
+                orderSteps.add(minimal.makeDecision(deck, third));
+                orderSteps.add(minimal.makeDecision(deck, first));
             } else {
-                minimal.makeDecision(deck, third);
-                minimal.makeDecision(deck, first);
-                minimal.makeDecision(deck, second);
+                orderSteps.add(minimal.makeDecision(deck, third));
+                orderSteps.add(minimal.makeDecision(deck, first));
+                orderSteps.add(minimal.makeDecision(deck, second));
             }
 
             logger.info("Во взятке следующие три карты:");
@@ -110,26 +128,34 @@ public class Order {
             }
         }
 
-        winner = defineWinner(deck, first, second, third);
-        setWinner(winner);
+        setWinner(defineWinner(orderSteps));
         logger.info("Победитель - " + winner.getName());
         return winner;
     }
 
 
-    public Gamer defineWinner(List<Card> deck, Gamer first, Gamer second, Gamer third) {
+    public Gamer defineWinner(List<OrderStep> orderSteps) {
         logger.info("Определяем победителя раздачи");
         int max;
-        max = Math.max(deck.get(0).getCardWeightRunk(), deck.get(1).getCardWeightRunk());
-        max = Math.max(max, deck.get(2).getCardWeightRunk());
-
-        if (max == deck.get(0).getCardWeightRunk()) {
-            return first;
-        } else if (max == deck.get(1).getCardWeightRunk()) {
-            return second;
+        if (orderSteps.get(0).getCard().getSuit().equals(orderSteps.get(1).getCard().getSuit())) {
+            max = Math.max(orderSteps.get(0).getCard().getCardWeightRunk(), orderSteps.get(1).getCard().getCardWeightRunk());
+            if (orderSteps.get(0).getCard().getSuit().equals(orderSteps.get(2).getCard().getSuit())) {
+                max = Math.max(max, orderSteps.get(2).getCard().getCardWeightRunk());
+            }
         } else {
-            return third;
+            max = orderSteps.get(0).getCard().getCardWeightRunk();
+            if (orderSteps.get(0).getCard().getSuit().equals(orderSteps.get(2).getCard().getSuit())) {
+                max = Math.max(max, orderSteps.get(0).getCard().getCardWeightRunk());
+            }
         }
 
+
+        if (max == orderSteps.get(0).getCard().getCardWeightRunk()) {
+            return orderSteps.get(0).getGamer();
+        } else if (max == orderSteps.get(1).getCard().getCardWeightRunk()) {
+            return orderSteps.get(1).getGamer();
+        } else {
+            return orderSteps.get(2).getGamer();
+        }
     }
 }

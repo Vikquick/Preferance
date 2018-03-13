@@ -2,9 +2,10 @@ package OrderStrategies;
 
 import Models.Cards.Card;
 import Models.Gamers.Gamer;
+import Models.Games.OrderStep;
 
 import java.util.List;
 
 public interface OrderStrategy {
-    List<Card> makeDecision(List<Card> desk, Gamer gamer);
+    OrderStep makeDecision(List<Card> desk, Gamer gamer);
 }

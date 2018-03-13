@@ -2,6 +2,7 @@ package Models.Games;
 
 import Controllers.DeckController;
 import Models.Cards.Card;
+import Models.Gamers.Bullet;
 import Models.Gamers.Gamer;
 import org.apache.log4j.Logger;
 
@@ -13,18 +14,51 @@ public class Round {
     public static final Logger logger = Logger.getLogger(Round.class);
 
     DeckController deckController = new DeckController();
+
     int number;
+
     List<Decision> decisions;
     List<Order> orders;
+
     Merchency merchency;
     Decision decision;
     Gamer winner;
+
+    List<Gamer> winners = new ArrayList<>();
     List<Card> firstDeck = new ArrayList<>();
     List<Card> secondDeck = new ArrayList<>();
     List<Card> thirdDeck = new ArrayList<>();
 
+    Bullet firstResult = new Bullet(0, 0, 0);
+    Bullet secondResult = new Bullet(0, 0, 0);
+    Bullet thirdResult = new Bullet(0, 0, 0);
+
     public Round(int number) {
         this.number = number;
+    }
+
+    public Bullet getFirstResult() {
+        return firstResult;
+    }
+
+    public void setFirstResult(Bullet firstResult) {
+        this.firstResult = firstResult;
+    }
+
+    public Bullet getSecondResult() {
+        return secondResult;
+    }
+
+    public void setSecondResult(Bullet secondResult) {
+        this.secondResult = secondResult;
+    }
+
+    public Bullet getThirdResult() {
+        return thirdResult;
+    }
+
+    public void setThirdResult(Bullet thirdResult) {
+        this.thirdResult = thirdResult;
     }
 
     public List<Decision> getDecisions() {
@@ -80,7 +114,7 @@ public class Round {
     }
 
     public void setFirstDeck(List<Card> firstDeck) {
-        this.firstDeck = firstDeck;
+        this.firstDeck.addAll(firstDeck);
     }
 
     public List<Card> getSecondDeck() {
@@ -88,7 +122,7 @@ public class Round {
     }
 
     public void setSecondDeck(List<Card> secondDeck) {
-        this.secondDeck = secondDeck;
+        this.secondDeck.addAll(secondDeck);
     }
 
     public List<Card> getThirdDeck() {
@@ -96,7 +130,7 @@ public class Round {
     }
 
     public void setThirdDeck(List<Card> thirdDeck) {
-        this.thirdDeck = thirdDeck;
+        this.thirdDeck.addAll(thirdDeck);
     }
 
     @SuppressWarnings("Duplicates")
@@ -125,7 +159,7 @@ public class Round {
         Gamer orderGamer = null;
         setDecisions(merchency.startMerchency(first, second, third));
         logger.info("Торговля окончена\n");
-        List<Gamer> winners = new ArrayList<>();
+
 
         orders = new ArrayList<>();
 
@@ -192,42 +226,42 @@ public class Round {
             if (orderGamer.getName().equals(first.getName())) {
                 if (max == firstWins && firstWins > 5) {
                     logger.info("Игрок " + first.getName() + " выиграл своё заявление");
-                    first.bullet.bullet += firstWins * 2;
-                    second.bullet.mountain += (5 - secondWins);
-                    third.bullet.mountain += (5 - thirdWins);
+                    firstResult.bullet += firstWins * 2;
+                    secondResult.mountain += (5 - secondWins);
+                    thirdResult.mountain += (5 - thirdWins);
                 } else {
                     logger.info("Игрок " + first.getName() + " проиграл своё заявление");
-                    first.bullet.mountain += (6 - firstWins) * 2;
-                    second.bullet.whists += secondWins * 2;
-                    third.bullet.whists += thirdWins * 2;
+                    firstResult.mountain += (6 - firstWins) * 2;
+                    secondResult.whists += secondWins * 2;
+                    thirdResult.whists += thirdWins * 2;
                 }
             }
             //Если заявку подал второй игрок
             if (orderGamer.getName().equals(second.getName())) {
                 if (max == secondWins && secondWins > 5) {
                     logger.info("Игрок " + first.getName() + " выиграл своё заявление");
-                    second.bullet.bullet += secondWins * 2;
-                    first.bullet.mountain += (5 - firstWins);
-                    third.bullet.mountain += (5 - thirdWins);
+                    secondResult.bullet += secondWins * 2;
+                    firstResult.mountain += (5 - firstWins);
+                    thirdResult.mountain += (5 - thirdWins);
                 } else {
                     logger.info("Игрок " + first.getName() + " проиграл своё заявление");
-                    second.bullet.mountain += (6 - secondWins) * 2;
-                    first.bullet.whists += firstWins * 2;
-                    third.bullet.whists += thirdWins * 2;
+                    secondResult.mountain += (6 - secondWins) * 2;
+                    firstResult.whists += firstWins * 2;
+                    thirdResult.whists += thirdWins * 2;
                 }
             }
             //Если заявку подал третий игрок
             if (orderGamer.getName().equals(third.getName())) {
                 if (max == thirdWins && thirdWins > 5) {
                     logger.info("Игрок " + first.getName() + " выиграл своё заявление");
-                    third.bullet.bullet += thirdWins * 2;
-                    second.bullet.mountain += (5 - secondWins);
-                    first.bullet.mountain += (5 - firstWins);
+                    thirdResult.bullet += thirdWins * 2;
+                    secondResult.mountain += (5 - secondWins);
+                    firstResult.mountain += (5 - firstWins);
                 } else {
                     logger.info("Игрок " + first.getName() + " проиграл своё заявление");
-                    third.bullet.mountain += (6 - thirdWins) * 2;
-                    second.bullet.whists += secondWins * 2;
-                    first.bullet.whists += firstWins * 2;
+                    thirdResult.mountain += (6 - thirdWins) * 2;
+                    secondResult.whists += secondWins * 2;
+                    firstResult.whists += firstWins * 2;
                 }
             }
         }
@@ -239,24 +273,24 @@ public class Round {
             if (orderGamer.getName().equals(first.getName())) {
                 if (min == firstWins) {
                     logger.info("Игрок " + first.getName() + " выиграл своё заявление");
-                    first.bullet.bullet += 10;
+                    firstResult.bullet += 10;
                 } else {
                     logger.info("Игрок " + first.getName() + " проиграл своё заявление");
-                    first.bullet.mountain += firstWins * 10;
-                    second.bullet.bullet += 10;
-                    third.bullet.bullet += 10;
+                    firstResult.mountain += firstWins * 10;
+                    secondResult.bullet += 10;
+                    thirdResult.bullet += 10;
                 }
             }
 
             if (orderGamer.getName().equals(second.getName())) {
                 if (min == secondWins) {
                     logger.info("Игрок " + first.getName() + " выиграл своё заявление");
-                    second.bullet.bullet += 10;
+                    secondResult.bullet += 10;
                 } else {
                     logger.info("Игрок " + first.getName() + " проиграл своё заявление");
-                    second.bullet.mountain += secondWins * 10;
-                    first.bullet.bullet += 10;
-                    third.bullet.bullet += 10;
+                    secondResult.mountain += secondWins * 10;
+                    firstResult.bullet += 10;
+                    thirdResult.bullet += 10;
                 }
             }
 
@@ -266,12 +300,15 @@ public class Round {
                     third.bullet.bullet += 10;
                 } else {
                     logger.info("Игрок " + first.getName() + " проиграл своё заявление");
-                    third.bullet.mountain += thirdWins * 10;
-                    second.bullet.bullet += 10;
-                    first.bullet.bullet += 10;
+                    thirdResult.mountain += thirdWins * 10;
+                    secondResult.bullet += 10;
+                    firstResult.bullet += 10;
                 }
             }
         }
+        first.addToBullet(firstResult);
+        second.addToBullet(secondResult);
+        third.addToBullet(thirdResult);
     }
 }
 
