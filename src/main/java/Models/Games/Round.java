@@ -19,6 +19,9 @@ public class Round {
     Merchency merchency;
     Decision decision;
     Gamer winner;
+    List<Card> firstDeck = new ArrayList<>();
+    List<Card> secondDeck = new ArrayList<>();
+    List<Card> thirdDeck = new ArrayList<>();
 
     public Round(int number) {
         this.number = number;
@@ -48,6 +51,54 @@ public class Round {
         this.orders = orders;
     }
 
+    public Merchency getMerchency() {
+        return merchency;
+    }
+
+    public void setMerchency(Merchency merchency) {
+        this.merchency = merchency;
+    }
+
+    public Decision getDecision() {
+        return decision;
+    }
+
+    public void setDecision(Decision decision) {
+        this.decision = decision;
+    }
+
+    public Gamer getWinner() {
+        return winner;
+    }
+
+    public void setWinner(Gamer winner) {
+        this.winner = winner;
+    }
+
+    public List<Card> getFirstDeck() {
+        return firstDeck;
+    }
+
+    public void setFirstDeck(List<Card> firstDeck) {
+        this.firstDeck = firstDeck;
+    }
+
+    public List<Card> getSecondDeck() {
+        return secondDeck;
+    }
+
+    public void setSecondDeck(List<Card> secondDeck) {
+        this.secondDeck = secondDeck;
+    }
+
+    public List<Card> getThirdDeck() {
+        return thirdDeck;
+    }
+
+    public void setThirdDeck(List<Card> thirdDeck) {
+        this.thirdDeck = thirdDeck;
+    }
+
     @SuppressWarnings("Duplicates")
     public void startRound(Gamer first, Gamer second, Gamer third) {
         int firstWins = 0;
@@ -63,8 +114,11 @@ public class Round {
         //Раздача карт игрокам
         deckController.startingGivingCards(first, second, third, deck);
         first.getRunkForHandDeck(first.deck);
+        firstDeck.addAll(first.deck);
         second.getRunkForHandDeck(second.deck);
+        secondDeck.addAll(second.deck);
         third.getRunkForHandDeck(third.deck);
+        thirdDeck.addAll(third.deck);
 
         //Торговля
         merchency = new Merchency();
@@ -139,13 +193,13 @@ public class Round {
                 if (max == firstWins && firstWins > 5) {
                     logger.info("Игрок " + first.getName() + " выиграл своё заявление");
                     first.bullet.bullet += firstWins * 2;
-                    second.bullet.mountain += (5-secondWins);
+                    second.bullet.mountain += (5 - secondWins);
                     third.bullet.mountain += (5 - thirdWins);
                 } else {
                     logger.info("Игрок " + first.getName() + " проиграл своё заявление");
                     first.bullet.mountain += (6 - firstWins) * 2;
-                    second.bullet.whists += secondWins*2;
-                    third.bullet.whists += thirdWins*2;
+                    second.bullet.whists += secondWins * 2;
+                    third.bullet.whists += thirdWins * 2;
                 }
             }
             //Если заявку подал второй игрок
@@ -158,8 +212,8 @@ public class Round {
                 } else {
                     logger.info("Игрок " + first.getName() + " проиграл своё заявление");
                     second.bullet.mountain += (6 - secondWins) * 2;
-                    first.bullet.whists += firstWins*2;
-                    third.bullet.whists += thirdWins*2;
+                    first.bullet.whists += firstWins * 2;
+                    third.bullet.whists += thirdWins * 2;
                 }
             }
             //Если заявку подал третий игрок
@@ -167,13 +221,13 @@ public class Round {
                 if (max == thirdWins && thirdWins > 5) {
                     logger.info("Игрок " + first.getName() + " выиграл своё заявление");
                     third.bullet.bullet += thirdWins * 2;
-                    second.bullet.mountain += (5-secondWins);
+                    second.bullet.mountain += (5 - secondWins);
                     first.bullet.mountain += (5 - firstWins);
                 } else {
                     logger.info("Игрок " + first.getName() + " проиграл своё заявление");
                     third.bullet.mountain += (6 - thirdWins) * 2;
-                    second.bullet.whists += secondWins*2;
-                    first.bullet.whists += firstWins*2;
+                    second.bullet.whists += secondWins * 2;
+                    first.bullet.whists += firstWins * 2;
                 }
             }
         }
