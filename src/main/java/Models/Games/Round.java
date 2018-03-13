@@ -114,11 +114,11 @@ public class Round {
         //Раздача карт игрокам
         deckController.startingGivingCards(first, second, third, deck);
         first.getRunkForHandDeck(first.deck);
-        firstDeck.addAll(first.deck);
+        setFirstDeck(first.deck);
         second.getRunkForHandDeck(second.deck);
-        secondDeck.addAll(second.deck);
+        setSecondDeck(second.deck);
         third.getRunkForHandDeck(third.deck);
-        thirdDeck.addAll(third.deck);
+        setThirdDeck(third.deck);
 
         //Торговля
         merchency = new Merchency();
@@ -135,15 +135,15 @@ public class Round {
                 switch (i) {
                     case 0:
                         orderGamer = first;
-                        decision = decisions.get(i);
+                        setDecision(decisions.get(i));
                         break;
                     case 1:
                         orderGamer = second;
-                        decision = decisions.get(i);
+                        setDecision(decisions.get(i));
                         break;
                     case 2:
                         orderGamer = third;
-                        decision = decisions.get(i);
+                        setDecision(decisions.get(i));
                         break;
                 }
             }

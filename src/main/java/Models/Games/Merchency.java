@@ -15,6 +15,38 @@ public class Merchency {
     public Decision thirdDecision;
     List<Decision> decisions;
 
+    public List<Decision> getDecisions() {
+        return decisions;
+    }
+
+    public void setDecisions(List<Decision> decisions) {
+        this.decisions = decisions;
+    }
+
+    public Decision getFirstDecision() {
+        return firstDecision;
+    }
+
+    public void setFirstDecision(Decision firstDecision) {
+        this.firstDecision = firstDecision;
+    }
+
+    public Decision getSecondDecision() {
+        return secondDecision;
+    }
+
+    public void setSecondDecision(Decision secondDecision) {
+        this.secondDecision = secondDecision;
+    }
+
+    public Decision getThirdDecision() {
+        return thirdDecision;
+    }
+
+    public void setThirdDecision(Decision thirdDecision) {
+        this.thirdDecision = thirdDecision;
+    }
+
     public List<Decision> startMerchency(Gamer first, Gamer second, Gamer third) {
 
         logger.info("Начинается торговля");
@@ -22,11 +54,11 @@ public class Merchency {
         while ((!Objects.equals(firstDecision, Decision.PASS) && !Objects.equals(secondDecision, Decision.PASS))
                 || (!Objects.equals(firstDecision, Decision.PASS) && !Objects.equals(thirdDecision, Decision.PASS))
                 || (!Objects.equals(thirdDecision, Decision.PASS) && !Objects.equals(secondDecision, Decision.PASS))) {
-            firstDecision = first.getDecision(decisions);
+            setFirstDecision(first.getDecision(decisions));
             decisions.add(firstDecision);
-            secondDecision = second.getDecision(decisions);
+            setSecondDecision(second.getDecision(decisions));
             decisions.add(secondDecision);
-            thirdDecision = third.getDecision(decisions);
+            setThirdDecision(third.getDecision(decisions));
             decisions.add(thirdDecision);
         }
         return decisions;

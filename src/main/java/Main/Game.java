@@ -121,6 +121,12 @@ public class Game {
             logger.info("Карта игрока " + third.getName() + " - " + round.getThirdDeck().get(i).cardWeight + " " + round.getThirdDeck().get(i).suit);
         }
     }
+
+    public void getResultOfMerchencyInRound(int roundNumber) {
+        logger.info("Игрок " + first.getName() + " принимает решение - " + round.getMerchency().getFirstDecision().toString());
+        logger.info("Игрок " + second.getName() + " - " + round.getMerchency().getSecondDecision().toString());
+        logger.info("Игрок " + third.getName() + " - " + round.getMerchency().getThirdDecision().toString());
+    }
 }
 
 
