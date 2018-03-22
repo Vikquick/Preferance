@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>Controllers.DeckController</OriginalElement>
+  <nodes>
+    <node x="542.3267012227537" y="1279.0">Main.DefaultGameBuilder</node>
+    <node x="794.3811968367888" y="506.0">Models.Games.Merchency</node>
+    <node x="479.57670122275374" y="1358.0">Main.Director</node>
+    <node x="426.6715794137051" y="89.0">Models.Cards.Card</node>
+    <node x="617.2841573631047" y="506.0">Controllers.DeckController</node>
+    <node x="783.4849953125516" y="238.0">Models.Games.Decision</node>
+    <node x="0.0" y="1002.0">Controllers.NamingController</node>
+    <node x="153.659090909091" y="744.0">OrderStrategies.Maximal</node>
+    <node x="345.97727272727275" y="744.0">OrderStrategies.Minimal</node>
+    <node x="188.69668511125445" y="506.0">Models.Games.OrderStep</node>
+    <node x="25.0" y="853.0">Models.Gamers.Names</node>
+    <node x="448.4772727272727" y="238.0">Models.Gamers.Gamer.CountOfSuits</node>
+    <node x="552.5767012227537" y="1111.0">Main.Game</node>
+    <node x="710.4420520999467" y="1002.0">Models.Games.Round</node>
+    <node x="298.47727272727275" y="625.0">OrderStrategies.OrderStrategy</node>
+    <node x="540.2550505050505" y="367.0">Models.Gamers.Gamer</node>
+    <node x="509.07670122275374" y="1437.0">Main.Main</node>
+    <node x="400.7965794137051" y="0.0">Models.Cards.CardWeight</node>
+    <node x="780.731520934173" y="0.0">Models.Cards.Suit</node>
+    <node x="219.06818181818187" y="853.0">Models.Games.Order</node>
+    <node x="904.2622275385431" y="238.0">Models.Gamers.Bullet</node>
+    <node x="495.82670122275374" y="1200.0">Main.GameBuilder</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="OrderStrategies.OrderStrategy" target="Models.Games.OrderStep">
+      <point x="-39.33333333333334" y="-14.5" />
+      <point x="318.1439393939394" y="555.0" />
+      <point x="282.242139656709" y="555.0" />
+      <point x="44.54545454545453" y="14.5" />
+    </edge>
+    <edge source="Main.DefaultGameBuilder" target="Main.GameBuilder">
+      <point x="-47.33333333333334" y="-14.5" />
+      <point x="565.9933678894204" y="1254.0" />
+      <point x="576.0767012227537" y="1254.0" />
+      <point x="26.75" y="14.5" />
+    </edge>
+    <edge source="Main.Director" target="Main.DefaultGameBuilder">
+      <point x="28.666666666666657" y="-14.5" />
+      <point x="551.2433678894204" y="1333.0" />
+      <point x="613.3267012227537" y="1333.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="Main.Game" target="Models.Gamers.Gamer">
+      <point x="-9.375" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="OrderStrategies.Minimal" target="Models.Games.OrderStep">
+      <point x="-35.14285714285711" y="-14.5" />
+      <point x="351.83441558441564" y="694.0" />
+      <point x="265.97727272727275" y="694.0" />
+      <point x="265.97727272727275" y="585.0" />
+      <point x="255.51486692943627" y="585.0" />
+      <point x="17.818181818181813" y="14.5" />
+    </edge>
+    <edge source="Models.Games.Round" target="Controllers.DeckController">
+      <point x="-12.4736842105263" y="-14.5" />
+      <point x="737.4683678894204" y="922.0" />
+      <point x="682.8736261973309" y="922.0" />
+      <point x="682.8736261973309" y="605.0" />
+      <point x="646.7841573631047" y="605.0" />
+      <point x="-29.5" y="14.5" />
+    </edge>
+    <edge source="Models.Cards.Card" target="Models.Cards.Suit">
+      <point x="26.625" y="-14.5" />
+      <point x="488.7965794137051" y="69.0" />
+      <point x="805.481520934173" y="69.0" />
+      <point x="-8.25" y="14.5" />
+    </edge>
+    <edge source="Models.Gamers.Gamer.CountOfSuits" target="Models.Gamers.Gamer">
+      <point x="37.33333333333337" y="14.5" />
+      <point x="541.810606060606" y="327.0" />
+      <point x="562.1994949494949" y="327.0" />
+      <point x="-17.555555555555543" y="-14.5" />
+    </edge>
+    <edge source="Main.Main" target="Main.Director">
+      <point x="0.0" y="-14.5" />
+      <point x="21.5" y="14.5" />
+    </edge>
+    <edge source="Models.Games.OrderStep" target="Models.Cards.Card">
+      <point x="0.0" y="-14.5" />
+      <point x="237.69668511125445" y="188.0" />
+      <point x="449.64216764899925" y="188.0" />
+      <point x="-12.529411764705912" y="14.5" />
+    </edge>
+    <edge source="OrderStrategies.Maximal" target="OrderStrategies.OrderStrategy">
+      <point x="24.571428571428555" y="-14.5" />
+      <point x="221.23051948051955" y="704.0" />
+      <point x="327.97727272727275" y="704.0" />
+      <point x="-29.5" y="14.5" />
+    </edge>
+    <edge source="Main.Game" target="Models.Games.Order">
+      <point x="-15.625" y="-14.5" />
+      <point x="574.4517012227537" y="1061.0" />
+      <point x="228.56818181818187" y="1061.0" />
+      <point x="-28.5" y="14.5" />
+    </edge>
+    <edge source="Models.Games.Round" target="Models.Cards.Card">
+      <point x="0.0" y="-14.5" />
+      <point x="749.9420520999467" y="138.0" />
+      <point x="495.5833441195874" y="138.0" />
+      <point x="33.41176470588232" y="14.5" />
+    </edge>
+    <edge source="Main.Main" target="Main.Game">
+      <point x="23.333333333333314" y="-14.5" />
+      <point x="567.4100345560871" y="1412.0" />
+      <point x="694.8267012227537" y="1412.0" />
+      <point x="694.8267012227537" y="1160.0" />
+      <point x="621.3267012227537" y="1160.0" />
+      <point x="31.25" y="14.5" />
+    </edge>
+    <edge source="Models.Games.Round" target="Models.Games.Merchency">
+      <point x="20.78947368421052" y="-14.5" />
+      <point x="770.7315257841572" y="942.0" />
+      <point x="869.5971303531469" y="942.0" />
+      <point x="869.5971303531469" y="605.0" />
+      <point x="877.7145301701222" y="605.0" />
+      <point x="33.3333333333334" y="14.5" />
+    </edge>
+    <edge source="Models.Games.Order" target="Models.Games.Decision">
+      <point x="34.54545454545456" y="-14.5" />
+      <point x="291.61363636363643" y="833.0" />
+      <point x="768.8483020999467" y="833.0" />
+      <point x="768.8483020999467" y="307.0" />
+      <point x="799.7974953125516" y="307.0" />
+      <point x="-27.1875" y="14.5" />
+    </edge>
+    <edge source="Controllers.NamingController" target="Models.Gamers.Names">
+      <point x="32.5" y="-14.5" />
+      <point x="97.5" y="982.0" />
+      <point x="85.0" y="982.0" />
+      <point x="20.0" y="14.5" />
+    </edge>
+    <edge source="OrderStrategies.Maximal" target="Models.Cards.Card">
+      <point x="-24.571428571428555" y="-14.5" />
+      <point x="172.08766233766244" y="714.0" />
+      <point x="121.27272727272737" y="714.0" />
+      <point x="121.27272727272737" y="158.0" />
+      <point x="437.1127558842934" y="158.0" />
+      <point x="-25.058823529411768" y="14.5" />
+    </edge>
+    <edge source="Models.Games.Order" target="OrderStrategies.Maximal">
+      <point x="-20.727272727272748" y="-14.5" />
+      <point x="236.34090909090912" y="813.0" />
+      <point x="175.159090909091" y="813.0" />
+      <point x="-21.5" y="14.5" />
+    </edge>
+    <edge source="OrderStrategies.Maximal" target="Models.Gamers.Gamer">
+      <point x="36.85714285714289" y="-14.5" />
+      <point x="233.51623376623388" y="714.0" />
+      <point x="534.2956313285372" y="714.0" />
+      <point x="534.2956313285372" y="456.0" />
+      <point x="558.6883838383837" y="456.0" />
+      <point x="-21.066666666666663" y="14.5" />
+    </edge>
+    <edge source="Models.Games.Order" target="Models.Gamers.Gamer">
+      <point x="20.727272727272748" y="-14.5" />
+      <point x="277.7954545454546" y="813.0" />
+      <point x="546.3529317885536" y="813.0" />
+      <point x="546.3529317885536" y="476.0" />
+      <point x="569.2217171717172" y="476.0" />
+      <point x="-10.533333333333331" y="14.5" />
+    </edge>
+    <edge source="OrderStrategies.OrderStrategy" target="Models.Cards.Card">
+      <point x="0.0" y="-14.5" />
+      <point x="357.47727272727275" y="605.0" />
+      <point x="364.679669509942" y="605.0" />
+      <point x="364.679669509942" y="198.0" />
+      <point x="453.8186382372345" y="198.0" />
+      <point x="-8.352941176470608" y="14.5" />
+    </edge>
+    <edge source="Models.Games.Order" target="OrderStrategies.Minimal">
+      <point x="6.909090909090878" y="-14.5" />
+      <point x="263.97727272727275" y="793.0" />
+      <point x="366.47727272727275" y="793.0" />
+      <point x="-20.5" y="14.5" />
+    </edge>
+    <edge source="Main.Game" target="Models.Gamers.Bullet">
+      <point x="34.375" y="-14.5" />
+      <point x="624.4517012227537" y="1091.0" />
+      <point x="962.6626268914989" y="1091.0" />
+      <point x="962.6626268914989" y="347.0" />
+      <point x="972.0955608718765" y="347.0" />
+      <point x="30.83333333333337" y="14.5" />
+    </edge>
+    <edge source="OrderStrategies.Minimal" target="Models.Cards.Card">
+      <point x="23.428571428571445" y="-14.5" />
+      <point x="410.4058441558442" y="704.0" />
+      <point x="437.97727272727275" y="704.0" />
+      <point x="437.97727272727275" y="218.0" />
+      <point x="462.1715794137051" y="218.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="Main.Game" target="Models.Games.OrderStep">
+      <point x="-21.875" y="-14.5" />
+      <point x="568.2017012227537" y="1071.0" />
+      <point x="134.25000000000006" y="1071.0" />
+      <point x="134.25000000000006" y="565.0" />
+      <point x="193.1512305657999" y="565.0" />
+      <point x="-44.54545454545456" y="14.5" />
+    </edge>
+    <edge source="Models.Games.Round" target="Models.Gamers.Bullet">
+      <point x="29.10526315789474" y="-14.5" />
+      <point x="779.0473152578414" y="962.0" />
+      <point x="943.3468374178148" y="962.0" />
+      <point x="943.3468374178148" y="347.0" />
+      <point x="935.0955608718765" y="347.0" />
+      <point x="-6.166666666666629" y="14.5" />
+    </edge>
+    <edge source="Main.Director" target="Main.GameBuilder">
+      <point x="0.0" y="-14.5" />
+      <point x="-26.75" y="14.5" />
+    </edge>
+    <edge source="OrderStrategies.Minimal" target="Models.Gamers.Gamer">
+      <point x="35.14285714285711" y="-14.5" />
+      <point x="422.12012987012986" y="724.0" />
+      <point x="539.5622979952038" y="724.0" />
+      <point x="539.5622979952038" y="466.0" />
+      <point x="563.9550505050504" y="466.0" />
+      <point x="-15.800000000000011" y="14.5" />
+    </edge>
+    <edge source="Models.Cards.Card" target="Models.Cards.CardWeight">
+      <point x="-8.875" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="Controllers.DeckController" target="Models.Cards.CardWeight">
+      <point x="23.600000000000023" y="-14.5" />
+      <point x="699.8841573631046" y="486.0" />
+      <point x="704.0271005757096" y="486.0" />
+      <point x="704.0271005757096" y="49.0" />
+      <point x="488.2965794137051" y="49.0" />
+      <point x="35.0" y="14.5" />
+    </edge>
+    <edge source="Models.Gamers.Gamer" target="Models.Gamers.Bullet">
+      <point x="35.111111111111086" y="-14.5" />
+      <point x="614.8661616161615" y="347.0" />
+      <point x="922.7622275385431" y="347.0" />
+      <point x="-18.5" y="14.5" />
+    </edge>
+    <edge source="Controllers.DeckController" target="Models.Gamers.Gamer">
+      <point x="-47.19999999999999" y="-14.5" />
+      <point x="629.0841573631046" y="426.0" />
+      <point x="611.3550505050505" y="426.0" />
+      <point x="31.600000000000023" y="14.5" />
+    </edge>
+    <edge source="OrderStrategies.OrderStrategy" target="Models.Gamers.Gamer">
+      <point x="39.33333333333334" y="-14.5" />
+      <point x="396.8106060606061" y="605.0" />
+      <point x="392.84062450519383" y="605.0" />
+      <point x="392.84062450519383" y="446.0" />
+      <point x="553.4217171717171" y="446.0" />
+      <point x="-26.333333333333343" y="14.5" />
+    </edge>
+    <edge source="Models.Games.OrderStep" target="Models.Gamers.Gamer">
+      <point x="39.2" y="-14.5" />
+      <point x="276.89668511125444" y="436.0" />
+      <point x="548.1550505050504" y="436.0" />
+      <point x="-31.599999999999994" y="14.5" />
+    </edge>
+    <edge source="Main.Game" target="Controllers.NamingController">
+      <point x="-28.125" y="-14.5" />
+      <point x="561.9517012227537" y="1081.0" />
+      <point x="97.5" y="1081.0" />
+      <point x="32.5" y="14.5" />
+    </edge>
+    <edge source="Models.Games.Round" target="Models.Games.Decision">
+      <point x="24.94736842105263" y="-14.5" />
+      <point x="774.8894205209994" y="952.0" />
+      <point x="904.8811968367888" y="952.0" />
+      <point x="904.8811968367888" y="297.0" />
+      <point x="865.0474953125516" y="297.0" />
+      <point x="38.06249999999997" y="14.5" />
+    </edge>
+    <edge source="Models.Games.Merchency" target="Models.Games.Decision">
+      <point x="-12.5" y="-14.5" />
+      <point x="831.8811968367888" y="476.0" />
+      <point x="838.8811968367888" y="476.0" />
+      <point x="838.8811968367888" y="327.0" />
+      <point x="832.4224953125516" y="327.0" />
+      <point x="5.4375" y="14.5" />
+    </edge>
+    <edge source="Models.Games.Order" target="Models.Cards.Card">
+      <point x="-34.545454545454504" y="-14.5" />
+      <point x="222.52272727272737" y="833.0" />
+      <point x="106.09625668449206" y="833.0" />
+      <point x="106.09625668449206" y="138.0" />
+      <point x="428.7598147078228" y="138.0" />
+      <point x="-33.41176470588235" y="14.5" />
+    </edge>
+    <edge source="Models.Gamers.Gamer.CountOfSuits" target="Models.Cards.Card">
+      <point x="-28.0" y="-14.5" />
+      <point x="476.4772727272727" y="208.0" />
+      <point x="466.34805000194046" y="208.0" />
+      <point x="4.176470588235304" y="14.5" />
+    </edge>
+    <edge source="OrderStrategies.Minimal" target="OrderStrategies.OrderStrategy">
+      <point x="0.0" y="-14.5" />
+      <point x="29.5" y="14.5" />
+    </edge>
+    <edge source="Main.GameBuilder" target="Main.Game">
+      <point x="-26.75" y="-14.5" />
+      <point x="522.5767012227537" y="1170.0" />
+      <point x="571.3267012227537" y="1170.0" />
+      <point x="-18.75" y="14.5" />
+    </edge>
+    <edge source="Models.Games.Round" target="Models.Games.Order">
+      <point x="-33.26315789473682" y="-14.5" />
+      <point x="716.6788942052099" y="972.0" />
+      <point x="266.56818181818187" y="972.0" />
+      <point x="9.5" y="14.5" />
+    </edge>
+    <edge source="Controllers.DeckController" target="Models.Cards.Card">
+      <point x="-23.599999999999994" y="-14.5" />
+      <point x="652.6841573631046" y="486.0" />
+      <point x="657.209630353147" y="486.0" />
+      <point x="657.209630353147" y="168.0" />
+      <point x="483.05393235488157" y="168.0" />
+      <point x="20.882352941176464" y="14.5" />
+    </edge>
+    <edge source="Models.Gamers.Gamer" target="Models.Cards.Suit">
+      <point x="8.777777777777771" y="-14.5" />
+      <point x="588.5328282828282" y="287.0" />
+      <point x="621.060606060606" y="287.0" />
+      <point x="621.060606060606" y="218.0" />
+      <point x="821.981520934173" y="218.0" />
+      <point x="8.25" y="14.5" />
+    </edge>
+    <edge source="Main.DefaultGameBuilder" target="Main.Game">
+      <point x="47.33333333333334" y="-14.5" />
+      <point x="660.6600345560871" y="1254.0" />
+      <point x="654.0767012227537" y="1254.0" />
+      <point x="654.0767012227537" y="1170.0" />
+      <point x="608.8267012227537" y="1170.0" />
+      <point x="18.75" y="14.5" />
+    </edge>
+    <edge source="Controllers.DeckController" target="Models.Cards.Suit">
+      <point x="47.19999999999999" y="-14.5" />
+      <point x="723.4841573631046" y="486.0" />
+      <point x="988.7622275385431" y="486.0" />
+      <point x="988.7622275385431" y="69.0" />
+      <point x="838.481520934173" y="69.0" />
+      <point x="24.75" y="14.5" />
+    </edge>
+    <edge source="Models.Games.Merchency" target="Models.Gamers.Gamer">
+      <point x="-37.5" y="-14.5" />
+      <point x="806.8811968367888" y="416.0" />
+      <point x="616.6217171717171" y="416.0" />
+      <point x="36.866666666666674" y="14.5" />
+    </edge>
+    <edge source="Main.Director" target="Main.Game">
+      <point x="-28.666666666666686" y="-14.5" />
+      <point x="493.9100345560871" y="1333.0" />
+      <point x="485.32670122275374" y="1333.0" />
+      <point x="485.32670122275374" y="1160.0" />
+      <point x="558.8267012227537" y="1160.0" />
+      <point x="-31.25" y="14.5" />
+    </edge>
+    <edge source="OrderStrategies.Maximal" target="Models.Games.OrderStep">
+      <point x="-12.285714285714278" y="-14.5" />
+      <point x="184.3733766233767" y="704.0" />
+      <point x="172.7486331632025" y="704.0" />
+      <point x="172.7486331632025" y="585.0" />
+      <point x="210.9694123839817" y="585.0" />
+      <point x="-26.727272727272748" y="14.5" />
+    </edge>
+    <edge source="Models.Games.Order" target="Models.Games.OrderStep">
+      <point x="-27.636363636363626" y="-14.5" />
+      <point x="229.43181818181824" y="823.0" />
+      <point x="143.159090909091" y="823.0" />
+      <point x="143.159090909091" y="575.0" />
+      <point x="202.06032147489083" y="575.0" />
+      <point x="-35.636363636363626" y="14.5" />
+    </edge>
+    <edge source="Models.Gamers.Gamer" target="Models.Gamers.Gamer.CountOfSuits">
+      <point x="-26.333333333333343" y="-14.5" />
+      <point x="553.4217171717171" y="337.0" />
+      <point x="504.4772727272727" y="337.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="Models.Games.Round" target="Models.Gamers.Gamer">
+      <point x="-20.78947368421052" y="-14.5" />
+      <point x="729.1525784157361" y="942.0" />
+      <point x="602.6262626262625" y="942.0" />
+      <point x="602.6262626262625" y="446.0" />
+      <point x="600.8217171717172" y="446.0" />
+      <point x="21.066666666666663" y="14.5" />
+    </edge>
+    <edge source="Main.Game" target="Models.Games.Round">
+      <point x="21.875" y="-14.5" />
+      <point x="611.9517012227537" y="1071.0" />
+      <point x="759.8170520999467" y="1071.0" />
+      <point x="9.875" y="14.5" />
+    </edge>
+    <edge source="Models.Gamers.Gamer" target="Models.Cards.Card">
+      <point x="0.0" y="-14.5" />
+      <point x="579.7550505050505" y="178.0" />
+      <point x="478.8774617666463" y="178.0" />
+      <point x="16.70588235294116" y="14.5" />
+    </edge>
+    <edge source="Models.Gamers.Gamer" target="Models.Games.Decision">
+      <point x="17.555555555555543" y="-14.5" />
+      <point x="597.310606060606" y="297.0" />
+      <point x="788.9224953125516" y="297.0" />
+      <point x="-38.0625" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5868102288021534" x="494.5" y="733.0" />
+  <SelectedNodes>
+    <node>OrderStrategies.OrderStrategy</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
