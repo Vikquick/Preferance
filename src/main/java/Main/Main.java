@@ -11,10 +11,12 @@ public class Main {
         Game game = director.buildGame();
         logger.info("Игра запущена");
 
-
-        game.getResults();
         game.getResultsOfGivingCardsInRound(3);
         game.getResultOfMerchencyInRound(5);
         game.getProcessOfOrderingInRound(7);
+        game.getResultOfRound(2);
+        game.getFullProcessOfRound(6);
+        game.getProcessOfGame();
+        game.getResults();
     }
 }

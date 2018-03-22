@@ -126,7 +126,6 @@ public class Game {
 
     //Результат торговли в нужном раунде
     public void getResultOfMerchencyInRound(int roundNumber) {
-
         Round round = getRound(roundNumber - 1);
         logger.info("Игрок " + first.getName() + " принимает решение - " + round.getMerchency().getFirstDecision().toString());
         logger.info("Игрок " + second.getName() + " - " + round.getMerchency().getSecondDecision().toString());
@@ -149,6 +148,11 @@ public class Game {
             }
             logger.info("Игрок " + order.getWinner().getName() + " забирает взятку");
         }
+    }
+
+    //Результат розыгрыша в нужном раунде
+    public void getResultOfRound(int roundNumber) {
+        Round round = getRound(roundNumber - 1);
         logger.info("Игроку " + first.getName() + " начислено в пульку:  " + round.getFirstResult().bullet + " пуль, "
                 + round.getFirstResult().mountain + " в гору, и " + round.getFirstResult().whists + " вистов");
         logger.info("Игроку " + second.getName() + " начислено в пульку:  " + round.getSecondResult().bullet + " пуль, "
@@ -157,8 +161,21 @@ public class Game {
                 + round.getThirdResult().mountain + " в гору, и " + round.getThirdResult().whists + " вистов");
     }
 
-}
+    //Полный процесс розыгрыша в нужном раунде
+    public void getFullProcessOfRound(int roundNumber) {
+        getResultsOfGivingCardsInRound(roundNumber);
+        getResultOfMerchencyInRound(roundNumber);
+        getProcessOfOrderingInRound(roundNumber);
+        getResultOfRound(roundNumber);
+    }
 
+    //Полный процесс игры
+    public void getProcessOfGame() {
+        for (int i = 0; i < 10; i++) {
+            getFullProcessOfRound(i+1);
+        }
+    }
+}
 
 abstract class GameBuilder {
     Game game;

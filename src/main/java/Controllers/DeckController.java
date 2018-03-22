@@ -38,7 +38,7 @@ public class DeckController {
     //Перетасовываем колоду
 
     public List<Card> reshuffleDeck(List<Card> deck) {
-
+        logger.info("Перетасовываем колоду");
         Collections.shuffle(deck);
         for (int i = 0; i < deck.size(); i++) {
             logger.info("Теперь в колоде " + deck.get(i).cardWeight + " " + deck.get(i).suit);

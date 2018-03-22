@@ -139,20 +139,14 @@ public class Round {
         int secondWins = 0;
         int thirdWins = 0;
 
-
+        //Создание колоды
         List<Card> deck = deckController.fillDeck();
 
-        logger.info("Перетасовываем колоду");
+
         deckController.reshuffleDeck(deck);
 
         //Раздача карт игрокам
-        deckController.startingGivingCards(first, second, third, deck);
-        first.getRunkForHandDeck(first.deck);
-        setFirstDeck(first.deck);
-        second.getRunkForHandDeck(second.deck);
-        setSecondDeck(second.deck);
-        third.getRunkForHandDeck(third.deck);
-        setThirdDeck(third.deck);
+        giveCardsToPlayers(first, second, third, deck);
 
         //Торговля
         merchency = new Merchency();
@@ -309,6 +303,16 @@ public class Round {
         first.addToBullet(firstResult);
         second.addToBullet(secondResult);
         third.addToBullet(thirdResult);
+    }
+
+    public void giveCardsToPlayers(Gamer first, Gamer second, Gamer third, List<Card> deck) {
+        deckController.startingGivingCards(first, second, third, deck);
+        first.getRunkForHandDeck(first.deck);
+        setFirstDeck(first.deck);
+        second.getRunkForHandDeck(second.deck);
+        setSecondDeck(second.deck);
+        third.getRunkForHandDeck(third.deck);
+        setThirdDeck(third.deck);
     }
 }
 
