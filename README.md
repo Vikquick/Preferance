@@ -29,4 +29,4 @@ specified round
 6) getProcessOfGame() - method for writing to log all information about game (Works like 5th method, but for all rounds in game)
 
 # UML Diagram
-[Here you can see UML diagram for classes in project](Diagrams/Preferance.uml)
+[Here you can see UML diagram for classes in project](Diagrams/)
