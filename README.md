@@ -9,7 +9,7 @@ Bots are using two kinds of Strategies while playing - Maximal and Minimal,
 these strategies are simply makes bots take decision for throwing Card with biggest Suit and Cardweight or smallest
 
 Also in Game model implemented Pattern for building game, which allows using several strategies of playing,
-but now there only default are available
+but now there only default is available
 
 # Dependencies
 This program uses such libs as:
@@ -28,3 +28,5 @@ specified round
 5) getFullProcessOfRound(int roundNumber) - method for writing to log all information about round (It simply uses first four methods)
 6) getProcessOfGame() - method for writing to log all information about game (Works like 5th method, but for all rounds in game)
 
+# UML Diagram
+[Here you can see UML diagram for classes in project](Diagrams/Preferance.uml)
